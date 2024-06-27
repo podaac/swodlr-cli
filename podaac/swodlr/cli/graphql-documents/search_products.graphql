@@ -1,0 +1,39 @@
+query (
+  $cycle: Int,
+  $pass: Int,
+  $scene: Int,
+  $outputGranuleExtentFlag: Boolean,
+  $outputSamplingGridType: GridType,
+  $rasterResolution: Int,
+  $utmZoneAdjust: Int,
+  $mgrsBandAdjust: Int,
+  $after: ID,
+  $limit: Int
+) {
+  l2RasterProducts(
+    cycle: $cycle,
+    pass: $pass,
+    scene: $scene,
+    outputGranuleExtentFlag: $outputGranuleExtentFlag,
+    outputSamplingGridType: $outputSamplingGridType,
+    rasterResolution: $rasterResolution,
+    utmZoneAdjust: $utmZoneAdjust,
+    mgrsBandAdjust: $mgrsBandAdjust,
+    after: $after,
+    limit: $limit
+  ) {
+    id,
+    timestamp,
+    cycle,
+    pass,
+    scene,
+    outputGranuleExtentFlag,
+    outputSamplingGridType,
+    rasterResolution,
+    utmZoneAdjust,
+    mgrsBandAdjust
+    status {
+      id, state, reason, timestamp
+    }
+  }
+}

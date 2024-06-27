@@ -1,0 +1,46 @@
+query (
+  $username: String!,
+  $cycle: Int,
+  $pass: Int,
+  $scene: Int,
+  $outputGranuleExtentFlag: Boolean,
+  $outputSamplingGridType: GridType,
+  $rasterResolution: Int,
+  $utmZoneAdjust: Int,
+  $mgrsBandAdjust: Int,
+  $beforeTimestamp: String,
+  $afterTimestamp: String,
+  $after: ID,
+  $limit: Int
+) {
+  user(username: $username) {
+    products(
+      cycle: $cycle,
+      pass: $pass,
+      scene: $scene,
+      outputGranuleExtentFlag: $outputGranuleExtentFlag,
+      outputSamplingGridType: $outputSamplingGridType,
+      rasterResolution: $rasterResolution,
+      utmZoneAdjust: $utmZoneAdjust,
+      mgrsBandAdjust: $mgrsBandAdjust,
+      beforeTimestamp: $beforeTimestamp,
+      afterTimestamp: $afterTimestamp,
+      after: $after,
+      limit: $limit
+    ) {
+      id,
+      timestamp,
+      cycle,
+      pass,
+      scene,
+      outputGranuleExtentFlag,
+      outputSamplingGridType,
+      rasterResolution,
+      utmZoneAdjust,
+      mgrsBandAdjust
+      status {
+        id, state, reason, timestamp
+      }
+    }
+  }
+}

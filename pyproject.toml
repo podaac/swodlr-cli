@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "swodlr-cli"
+version = "0.0.1"
+description = ""
+authors = ["podaac-tva <podaac-tva@jpl.nasa.gov>"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{include = "podaac/swodlr/cli"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+gql = { version = "^3.5.0", extras = ["aiohttp"]}
+earthaccess = "^0.9.0"
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "^70.1.1"  # This is required for earthaccess
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+swodlr = "podaac.swodlr.cli.__main__:main"
