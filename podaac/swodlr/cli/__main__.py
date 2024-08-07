@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-import asyncio
+from importlib import resources
 import json
 from os import environ
 from pathlib import Path
@@ -128,13 +128,13 @@ def search_products(session, args):
 
 
 def _load_graphql_query(name):
-    path = Path(__file__, '..', 'graphql-documents', f'{name}.graphql').resolve()
+    path = resources.files().joinpath('graphql-documents', f'{name}.graphql')
+
     if not path.is_file():
         raise RuntimeError(f'GraphQL document not found: {str(path)}')
 
-    with path.open() as doc:
-        return gql.gql(doc.read())
-    
+    return gql.gql(path.read_text('utf-8'))
+
 
 def _get_graphql_url(env = None):
     # Check for environmental overrides first
