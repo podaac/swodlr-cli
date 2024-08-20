@@ -1,0 +1,19 @@
+mutation (
+  $id: ID!
+) {
+  invalidateProduct(id: $id) {
+    id,
+    timestamp,
+    cycle,
+    pass,
+    scene,
+    outputGranuleExtentFlag,
+    outputSamplingGridType,
+    rasterResolution,
+    utmZoneAdjust,
+    mgrsBandAdjust
+    status {
+      id, state, reason, timestamp
+    }
+  }
+}
